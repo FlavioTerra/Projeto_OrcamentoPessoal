@@ -1,0 +1,26 @@
+
+body{
+    background: #baaac9;
+}
+
+header nav.navbar{
+    background: rgb(50, 69, 121);
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+header ul li {
+    padding-left: 15px;
+}
+
+header a {
+    color: #fff;
+    font-weight: 550;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all ease 0.3s;
+}
+
+header a:hover{
+    color: #9bf0e1;
+}
