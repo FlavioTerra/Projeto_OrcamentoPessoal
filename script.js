@@ -56,7 +56,30 @@ class BD {
     }
 
     pesquisar(desp) {
-        console.log(desp);
+        let despFiltradas = [];
+
+        despFiltradas = this.recuperarRegistros();
+
+        if(desp.ano != '') {
+            despFiltradas = despFiltradas.filter(d => d.ano == desp.ano);
+        }
+        if(desp.mes != '') {
+            despFiltradas = despFiltradas.filter(d => d.mes == desp.mes);
+        }
+        if(desp.dia != '') {
+            despFiltradas = despFiltradas.filter(d => d.dia == desp.dia);
+        }
+        if(desp.tipo != '') {
+            despFiltradas = despFiltradas.filter(d => d.tipo == desp.tipo);
+        }
+        if(desp.descricao != '') {
+            despFiltradas = despFiltradas.filter(d => d.descricao == desp.descricao);
+        }
+        if(desp.valor != '') {
+            despFiltradas = despFiltradas.filter(d => d.valor == desp.valor);
+        }
+
+        return despFiltradas;
     }
 }
 
@@ -98,12 +121,17 @@ function cadastrarDespesa() {
     }
 }
 
-function carregarLista() {
+function carregarLista(regs = null) {
     let registros = [];
+   
+    registros = regs;
 
-    registros =  bd.recuperarRegistros();
+    if(regs === null) {
+        registros =  bd.recuperarRegistros();
+    }
 
     let listaTabela = document.getElementById('listaDespesas');
+    listaTabela.innerHTML = '';
     
     registros.forEach(function(cont){
         
@@ -131,6 +159,10 @@ function carregarLista() {
         lin.insertCell(1).innerHTML = cont.tipo;
         lin.insertCell(2).innerHTML = cont.descricao;
         lin.insertCell(3).innerHTML = cont.valor;
+        let btn = document.createElement('button');
+        btn.className = 'btn btn-danger'
+        btn.innerHTML = '<i class="fas fa-times"></i>'
+        lin.insertCell(4).appendChild(btn);
     })
 }
 
@@ -144,7 +176,11 @@ function pesquisarDespesa() {
 
     let despesa = new Despesa(ano.value, mes.value, dia.value, tipo.value, descricao.value, valor.value);
 
-    bd.pesquisar(despesa);
+    let registros = [];
+
+    registros = bd.pesquisar(despesa);
+
+    carregarLista(registros);
 }
 
    
