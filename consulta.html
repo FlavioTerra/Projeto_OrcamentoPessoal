@@ -22,7 +22,7 @@
         <script type="text/javascript" src="script.js"></script>
 
     </head>
-    <body>
+    <body onload="carregarLista()">
         
         <header>
             <nav class="navbar navbar-expand-md">
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="col-lg-2 col-6 d-flex justify-content-end align-self-center">
-                        <button type="button" class="btn btn-dark">
+                        <button type="button" class="btn btn-dark" onclick="pesquisarDespesa()">
                             <i class="fas fa-search"></i> 
                         </button>
                     </div>
@@ -127,7 +127,7 @@
                                     <th>Valor</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="listaDespesas">
                             </tbody>
                         </table>    
                     </div>
