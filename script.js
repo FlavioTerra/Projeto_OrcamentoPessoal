@@ -52,8 +52,11 @@ class BD {
                 registros.push(registro);
             }
         }
-
         return registros;
+    }
+
+    pesquisar(desp) {
+        console.log(desp);
     }
 }
 
@@ -129,6 +132,19 @@ function carregarLista() {
         lin.insertCell(2).innerHTML = cont.descricao;
         lin.insertCell(3).innerHTML = cont.valor;
     })
+}
+
+function pesquisarDespesa() {
+    let ano = document.getElementById('ano');
+    let mes = document.getElementById('mes');
+    let dia = document.getElementById('dia');
+    let tipo = document.getElementById('tipo');
+    let descricao = document.getElementById('descricao');
+    let valor = document.getElementById('valor');
+
+    let despesa = new Despesa(ano.value, mes.value, dia.value, tipo.value, descricao.value, valor.value);
+
+    bd.pesquisar(despesa);
 }
 
    
