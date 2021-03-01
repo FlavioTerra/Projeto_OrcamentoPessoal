@@ -49,6 +49,7 @@ class BD {
             let registro = JSON.parse(localStorage.getItem(cont));
             
             if(registro !== null) {
+                registro.id = cont;
                 registros.push(registro);
             }
         }
@@ -80,6 +81,10 @@ class BD {
         }
 
         return despFiltradas;
+    }
+
+    remover(id) {
+        localStorage.removeItem(id);
     }
 }
 
@@ -160,8 +165,14 @@ function carregarLista(regs = null) {
         lin.insertCell(2).innerHTML = cont.descricao;
         lin.insertCell(3).innerHTML = cont.valor;
         let btn = document.createElement('button');
-        btn.className = 'btn btn-danger'
+        btn.className = 'btn btn-sm btn-danger'
         btn.innerHTML = '<i class="fas fa-times"></i>'
+        btn.id = `id_despesa_${cont.id}`;
+        btn.onclick = function() {
+            let id = btn.id.replace('id_despesa_', '');
+            bd.remover(id);
+            window.location.reload();
+        }
         lin.insertCell(4).appendChild(btn);
     })
 }
